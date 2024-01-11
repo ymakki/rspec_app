@@ -60,4 +60,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include FactoryBot::Syntax::Methods #追記
+  # ↑ let!(:book) { create(:book,title:'hoge',body:'body') }
+  #   こちらのコードは
+  #   let!(:book) { FactoryBot.create(:book,title:'hoge',body:'body') }
+  #   FactoryBotが省略されて記述されています。
+  #   このように省略するためにbookersではspec/rails_helper.rbに設定を加えています。
+
 end

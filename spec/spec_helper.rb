@@ -14,6 +14,19 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.before(:each, type: :system) do #追記
+    #driven_by :selenium_chrome_headless #追記
+    driven_by :rack_test                 #追記
+  end                                    #追記
+  # ↑ Capybaraの実行環境
+  #   Capybaraが動作するときにはドライバと言われる実行環境を選択できます。
+  #   主な実行環境として以下のものがあります。
+  #   Rack::Test： Rails標準のテスト機能で、高速に動作します。
+  #   Selenium：JavasScript使用時の実行環境です。ブラウザを起動するため、実行速度は遅いです。
+  #   bookersのテストコードではドライバにRack::Testを選択して実行しています。
+  #   System Specを実行の際にRack::Testでテストを行うには設定が必要です。
+  #   設定箇所を確認してみましょう。
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
